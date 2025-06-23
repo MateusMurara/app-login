@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menu Principal - Sistema de Cadastro</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <script src="scripts/auth.js" defer></script>
+</head>
+<body>
+  <header>
+    <div class="container header-content">
+      <a href="index.html" class="logo">Sistema de Cadastro</a>
+      <div class="user-menu">
+        <span id="userDisplay"></span>
+        <button class="btn btn-secondary btn-sm" onclick="logout()">
+          <i class="fas fa-sign-out-alt"></i> Sair
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="card">
+      <h1><i class="fas fa-home"></i> Menu Principal</h1>
+      
+      <div class="menu-actions">
+        <button class="btn" onclick="location.href='cadastro.html'">
+          <i class="fas fa-user-plus"></i> Novo Cadastro
+        </button>
+        
+        <button class="btn btn-secondary" onclick="location.href='consulta.html'">
+          <i class="fas fa-search"></i> Consultar Cadastros
+        </button>
+        
+        <button class="btn btn-danger" onclick="logout()">
+          <i class="fas fa-sign-out-alt"></i> Sair do Sistema
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    .user-menu {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    
+    .user-menu span {
+      font-weight: 500;
+      color: var(--primary-color);
+    }
+    
+    .btn-sm {
+      padding: 5px 10px;
+      font-size: 0.85rem;
+    }
+    
+    .menu-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-top: 30px;
+    }
+    
+    .menu-actions .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 12px;
+      font-size: 1rem;
+    }
+  </style>
+</body>
+</html>

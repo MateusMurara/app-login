@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro - Sistema de Cadastro</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <script src="scripts/auth.js" defer></script>
+  <script src="scripts/util.js" defer></script>
+</head>
+<body>
+  <header>
+    <div class="container header-content">
+      <a href="index.html" class="logo">Sistema de Cadastro</a>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="card">
+      <h1><i class="fas fa-user-plus"></i> Criar Conta</h1>
+      
+      <div class="form-group">
+        <label for="regUser">Nome de Usuário</label>
+        <input type="text" id="regUser" placeholder="Escolha um nome de usuário" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="regPass">Senha</label>
+        <input type="password" id="regPass" placeholder="Crie uma senha segura" required>
+        <small class="text-muted">Mínimo de 4 caracteres</small>
+      </div>
+      
+      <div id="msgRegistro" class="alert" style="display: none;"></div>
+      
+      <button class="btn btn-block" onclick="registrar()">
+        <i class="fas fa-user-plus"></i> Criar Conta
+      </button>
+      
+      <p style="text-align: center; margin-top: 20px;">
+        Já tem uma conta? <a href="index.html">Faça login aqui</a>
+      </p>
+    </div>
+  </div>
+
+  <script>
+    // Adiciona evento de tecla Enter para registrar
+    document.addEventListener('DOMContentLoaded', function() {
+      const inputs = document.querySelectorAll('input');
+      inputs.forEach(input => {
+        input.addEventListener('keypress', function(e) {
+          if (e.key === 'Enter') {
+            registrar();
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

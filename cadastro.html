@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro de Pessoa - Sistema</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <script src="scripts/crud.js" defer></script>
+</head>
+<body>
+  <header>
+    <div class="container header-content">
+      <a href="menu.html" class="logo">Sistema de Cadastro</a>
+      <div class="user-menu">
+        <span id="userDisplay"></span>
+        <button class="btn btn-secondary btn-sm" onclick="location.href='menu.html'">
+          <i class="fas fa-arrow-left"></i> Voltar
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="card">
+      <h1><i class="fas fa-user-edit"></i> Cadastro de Pessoa</h1>
+      
+      <div class="form-group">
+        <label for="nome">Nome Completo</label>
+        <input type="text" id="nome" placeholder="Digite o nome completo" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="email">E-mail</label>
+        <input type="email" id="email" placeholder="Digite o e-mail" required>
+      </div>
+      
+      <div id="msgCadastro" class="alert" style="display: none;"></div>
+      
+      <div class="form-actions">
+        <button class="btn" onclick="salvarPessoa()">
+          <i class="fas fa-save"></i> Salvar
+        </button>
+        <button class="btn btn-secondary" onclick="location.href='menu.html'">
+          <i class="fas fa-times"></i> Cancelar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    .form-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    
+    .form-actions .btn {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    
+    .user-menu {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    
+    .user-menu span {
+      font-weight: 500;
+      color: var(--primary-color);
+    }
+    
+    .btn-sm {
+      padding: 5px 10px;
+      font-size: 0.85rem;
+    }
+  </style>
+  
+  <script>
+    // Exibe o nome do usuário logado
+    document.addEventListener('DOMContentLoaded', function() {
+      const userDisplay = document.getElementById('userDisplay');
+      if (userDisplay && localStorage.logado) {
+        userDisplay.textContent = localStorage.logado;
+      }
+      
+      // Adiciona evento de tecla Enter para salvar
+      const inputs = document.querySelectorAll('input');
+      inputs.forEach(input => {
+        input.addEventListener('keypress', function(e) {
+          if (e.key === 'Enter') {
+            salvarPessoa();
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
