@@ -208,7 +208,9 @@
       }
       
       // Atualiza a tabela quando a página carregar
-      atualizarTabela();
+      if (typeof atualizarTabela === 'function') {
+        atualizarTabela();
+      }
     });
     
     // Função para filtrar a tabela
@@ -239,17 +241,12 @@
       
       // Atualiza o contador de registros
       const tableInfo = document.getElementById('tableInfo');
-      if (rowCount === 0) {
-        tableInfo.textContent = 'Nenhum registro encontrado';
-      } else {
-        tableInfo.textContent = `${rowCount} registro(s) encontrado(s)`;
-      }
-    }
-    
-    // Função para confirmar exclusão
-    function confirmarExclusao(index) {
-      if (confirm('Tem certeza que deseja excluir este registro?')) {
-        excluir(index);
+      if (tableInfo) {
+        if (rowCount === 0) {
+          tableInfo.textContent = 'Nenhum registro encontrado';
+        } else {
+          tableInfo.textContent = `${rowCount} registro(s) encontrado(s)`;
+        }
       }
     }
   </script>

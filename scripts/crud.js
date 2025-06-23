@@ -200,8 +200,94 @@ function initPage() {
   });
 }
 
+/**
+ * Exibe um modal de confirmação antes de excluir um registro
+ */
+function confirmarExclusao(index) {
+  if (index < 0 || index >= pessoas.length) return;
+  
+  const pessoa = pessoas[index];
+  
+  // Cria o modal de confirmação
+  const modal = document.createElement('div');
+  modal.className = 'modal-overlay';
+  modal.style.cssText = `
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  `;
+  
+  modal.innerHTML = `
+    <div class="modal-content" style="
+      background: white;
+      padding: 25px;
+      border-radius: 8px;
+      max-width: 400px;
+      width: 90%;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      text-align: center;
+    ">
+      <h3 style="margin-top: 0; color: #333;">Confirmar Exclusão</h3>
+      <p>Tem certeza que deseja excluir o cadastro de <strong>${pessoa.nome}</strong> (${pessoa.email})?</p>
+      <div style="margin-top: 25px; display: flex; justify-content: center; gap: 15px;">
+        <button id="btnCancelar" style="
+          padding: 8px 20px;
+          background-color: #6c757d;
+          color: white;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+        ">Cancelar</button>
+        <button id="btnConfirmar" style="
+          padding: 8px 20px;
+          background-color: #dc3545;
+          color: white;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+        ">
+          <i class="fas fa-trash"></i> Excluir
+        </button>
+      </div>
+    </div>
+  `;
+  
+  // Adiciona o modal ao body
+  document.body.appendChild(modal);
+  
+  // Adiciona os eventos
+  const btnCancelar = modal.querySelector('#btnCancelar');
+  const btnConfirmar = modal.querySelector('#btnConfirmar');
+  
+  const fecharModal = () => {
+    document.body.removeChild(modal);
+  };
+  
+  btnCancelar.addEventListener('click', fecharModal);
+  
+  btnConfirmar.addEventListener('click', () => {
+    fecharModal();
+    excluir(index);
+  });
+  
+  // Fecha o modal ao clicar fora do conteúdo
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      fecharModal();
+    }
+  });
+}
+
 // Torna as funções disponíveis globalmente
 window.salvarPessoa = salvarPessoa;
 window.atualizarTabela = atualizarTabela;
 window.editar = editar;
 window.excluir = excluir;
+window.confirmarExclusao = confirmarExclusao;
